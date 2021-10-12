@@ -1,0 +1,18 @@
+.boardsModal {
+  width: 350px;
+  height: 150px;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(229, 231, 235, 1);
+  border-radius: 10px;
+}
+
+.boardsModal_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 1px solid grey;
+}
