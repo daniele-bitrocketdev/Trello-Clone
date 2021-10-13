@@ -3,6 +3,7 @@ import BoardTitle from "../../components/BoardTitle";
 import BoardsModal from "../../components/BoardModal";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { fetchBoardsData } from "../../features/board/boardSlice";
+import axios from "axios";
 import "./style.css";
 
 const Boardspage: FC = memo(() => {
@@ -12,17 +13,27 @@ const Boardspage: FC = memo(() => {
   const [boardTitle, setBoardTitle] = useState<string>("");
 
   const createBoard = () => {
-    fetch("http://localhost:5000/boards", {
-      method: "POST",
-
-      body: JSON.stringify({
+    axios
+      .post("http://localhost:5000/boards", {
         title: boardTitle,
-      }),
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    });
+  const deleteBoard = (id: string) => {
+    axios
+      .delete(`http://localhost:5000/boards/${id}`)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
@@ -35,11 +46,26 @@ const Boardspage: FC = memo(() => {
     setBoardTitle("");
   };
 
+  const handleDelete = (id: string) => {
+    deleteBoard(id);
+  };
+
+  if (loading) {
+    return <div>spinner</div>;
+  }
+
   return (
     <div className="boardsPage">
       <div className="boardsPage_container">
         {boards?.map((board) => {
-          return <BoardTitle title={board.title} action={() => {}} />;
+          return (
+            <BoardTitle
+              //@ts-ignore
+              handleDelete={() => handleDelete(board._id)}
+              title={board.title}
+              action={() => {}}
+            />
+          );
         })}
 
         <BoardTitle

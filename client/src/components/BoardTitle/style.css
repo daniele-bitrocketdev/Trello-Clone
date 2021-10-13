@@ -3,17 +3,13 @@
   border-radius: 0.375rem;
   padding: 0.5rem;
   font-weight: 600;
-  display: flex;
   cursor: pointer;
-  display: flex;
-  justify-content: space-between;
 }
 
 .boardTitle_grey {
-  --tw-bg-opacity: 1;
-  background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
-  --tw-text-opacity: 1;
-  color: rgba(17, 24, 39, var(--tw-text-opacity));
+  background-color: rgba(229, 231, 235);
+  color: rgba(17, 24, 39);
+  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -21,4 +17,9 @@
 .boardTitle_blue {
   background-color: rgba(59, 130, 246);
   color: rgba(255, 255, 255);
+}
+
+.boardTitle_header {
+  display: flex;
+  justify-content: space-between;
 }

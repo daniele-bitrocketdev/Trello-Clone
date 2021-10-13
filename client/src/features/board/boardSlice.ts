@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 export interface dataBoard {
   title: string;
@@ -7,8 +8,8 @@ export interface dataBoard {
 export const fetchBoardsData = createAsyncThunk(
   "boards/fetchBoardsData",
   async () => {
-    const response = await fetch(`http://localhost:5000/boards`);
-    return await response.json();
+    const response = await axios.get(`http://localhost:5000/boards`);
+    return await response.data;
   }
 );
 
@@ -24,6 +25,7 @@ export const boardDataSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(fetchBoardsData.fulfilled, (state, action) => {
+      //@ts-ignore
       state.boards = action.payload;
       state.loading = false;
     });

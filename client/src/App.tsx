@@ -7,15 +7,15 @@ import "./App.css";
 
 export default function App() {
   return (
-    <Router>
-      <Provider store={store}>
+    <Provider store={store}>
+      <Router>
         <Navbar />
         <div style={{ height: "100vh" }}>
           <Switch>
             <Route exact path="/boards" component={Boardspage} />
           </Switch>
         </div>
-      </Provider>
-    </Router>
+      </Router>
+    </Provider>
   );
 }

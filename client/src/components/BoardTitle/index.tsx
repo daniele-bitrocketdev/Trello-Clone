@@ -5,9 +5,10 @@ interface Props {
   title: string;
   addition?: boolean;
   action: () => void;
+  handleDelete?: () => void;
 }
 
-const BoardTitle: FC<Props> = ({ title, addition, action }) => {
+const BoardTitle: FC<Props> = ({ title, addition, action, handleDelete }) => {
   return (
     <div
       onClick={action}
@@ -15,7 +16,14 @@ const BoardTitle: FC<Props> = ({ title, addition, action }) => {
         addition ? " boardTitle_grey " : " boardTitle_blue"
       }`}
     >
-      <div>{title}</div>
+      {addition ? (
+        <div>{title}</div>
+      ) : (
+        <div className={"boardTitle_header"}>
+          <div>{title}</div>
+          <div onClick={handleDelete}>X</div>
+        </div>
+      )}
     </div>
   );
 };
