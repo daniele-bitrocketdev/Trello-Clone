@@ -5,13 +5,11 @@ interface Props {
   title: string;
   addition?: boolean;
   action: () => void;
-  id: string;
 }
 
-const BoardTitle: FC<Props> = ({ title, addition, action, id }) => {
+const BoardTitle: FC<Props> = ({ title, addition, action }) => {
   return (
     <div
-      key={id}
       onClick={action}
       className={`boardTitle ${
         addition ? " boardTitle_grey " : " boardTitle_blue"
